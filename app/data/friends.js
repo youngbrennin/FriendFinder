@@ -1,9 +1,9 @@
 //array that holds all the 'friends' that have taken the survey
 //initialize starting with 'dummy' data
-var friendList = [
+var friendsArray = [
     {
       name: 'Brennin Young',
-      profilePic: 'https://avatars3.githubusercontent.com/u/36016279?s=60&v=4',
+      photo: 'https://avatars3.githubusercontent.com/u/36016279?s=60&v=4',
       scores: [
         "5",
         "4",
@@ -19,4 +19,4 @@ var friendList = [
     }
   ]
   
-  module.exports = friendList;
+  module.exports = friendsArray;
