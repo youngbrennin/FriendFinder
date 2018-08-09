@@ -3,7 +3,7 @@
 var friendsArray = [
     {
       name: 'Brennin Young',
-      photo: 'https://avatars3.githubusercontent.com/u/36016279?s=60&v=4',
+      photo: 'https://media.licdn.com/dms/image/C4E03AQFa2D0DeoeVng/profile-displayphoto-shrink_200_200/0?e=1539216000&v=beta&t=I8Vx2-Sht7ZAQiBdlCRUj7PvYMcatjTX-k6jYJPigHE',
       scores: [
         "5",
         "4",
