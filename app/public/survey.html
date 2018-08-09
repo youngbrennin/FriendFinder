@@ -172,16 +172,16 @@
 
     </div>
 
-    <div id="modal1" class="modal">
-        <div class="modal-content ">
-            <h4>Closest Friend Match</h4>
+    <div id="modal1" class="modal" style="border: 2px solid #5BC5F2;">
+        <div class="modal-content">
+            <h4>Meet Your New Friend!</h4>
             <div class="divider"></div>
             <h5 id="userMatch" style="color: #5BC5F2; font-weight: bolder;"></h5>
             <img id="userMatchImage" class="materialboxed" style="border: 2px solid #B7B7B7;" height="200px" width="200px" src="">
         </div>
-        <div class="modal-footer" style="background-color: #B7B7B7;">
-                <div class="divider"></div>
-            <a href="/survey" class="modal-action modal-close waves-effect waves-green btn-flat" style="color: white; font-weight: bolder;">Find New Match!</a>
+        <div class="divider"></div>
+        <div class="modal-footer" style="background-color: #B7B7B7; border-top: 2px solid black;">
+            <a href="/survey" class="modal-action modal-close waves-effect waves-green btn-flat hoverable" style="color: white; font-weight: bolder; padding: 0px; margin-right: 43%;">Find New Match!</a>
         </div>
     </div>
 
@@ -215,12 +215,18 @@
                     $('#q10').val().trim()
                 ]
             };
-            $.post('/api/friends', userInput)
-                .done(function (data) {
-                    $('#userMatch').html(data.matchName);
-                    $("#userMatchImage").attr("src", data.matchImage);
-                    $('#modal1').modal('open');
-                });
+            var emptyValue = $('.browser-default').val();
+            if (emptyValue === "") {
+                alert('Oh no! It looks like you forgot a field or two! Please fill all available fields...');
+            } else {
+                $.post('/api/friends', userInput)
+                    .done(function (data) {
+                        $('#userMatch').html(data.matchName);
+                        $("#userMatchImage").attr("src", data.matchImage);
+                        $('#modal1').modal('open');
+                    });
+
+            }
         });
     </script>
 </body>
