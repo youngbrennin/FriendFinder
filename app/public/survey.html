@@ -215,8 +215,9 @@
                     $('#q10').val().trim()
                 ]
             };
-            var emptyValue = $('.browser-default').val();
-            if (emptyValue === "") {
+            console.log(userInput);
+            // var emptyValue = $('.browser-default').val();
+            if (userInput === "") {
                 alert('Oh no! It looks like you forgot a field or two! Please fill all available fields...');
             } else {
                 $.post('/api/friends', userInput)
