@@ -187,47 +187,58 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            // $('select').material_select();
-            $('.modal').modal({
-                dismissible: false,
-                opacity: .5,
-                inDuration: 300,
-                outDuration: 200,
-                startingTop: '4%',
-                endingTop: '10%'
-            });
-        });
-        $('#submitBtn').on('click', function (event) {
-            event.preventDefault();
-            var userInput = {
-                name: $('#userName').val().trim(),
-                photo: $('#userPhoto').val().trim(),
-                scores: [
-                    $('#q1').val().trim(),
-                    $('#q2').val().trim(),
-                    $('#q3').val().trim(),
-                    $('#q4').val().trim(),
-                    $('#q5').val().trim(),
-                    $('#q6').val().trim(),
-                    $('#q7').val().trim(),
-                    $('#q8').val().trim(),
-                    $('#q9').val().trim(),
-                    $('#q10').val().trim()
-                ]
-            };
-            console.log(userInput);
-            // var emptyValue = $('.browser-default').val();
-            if (userInput === "") {
-                alert('Oh no! It looks like you forgot a field or two! Please fill all available fields...');
-            } else {
-                $.post('/api/friends', userInput)
-                    .done(function (data) {
-                        $('#userMatch').html(data.matchName);
-                        $("#userMatchImage").attr("src", data.matchImage);
-                        $('#modal1').modal('open');
-                    });
 
-            }
+
+            $('#submitBtn').on('click', function (event) {
+                event.preventDefault();
+
+                function validateForm() {
+                    var isValid = true;
+                    $('.validate').each(function () {
+                        if ($(this).val() === '')
+                            isValid = false;
+                    });
+                    $('.browser-default').each(function () {
+                        if ($(this).val() === "")
+                            isValid = false
+                    })
+                    return isValid;
+                }
+                if (validateForm() === true) {
+                    var userInput = {
+                        name: $('#userName').val().trim(),
+                        photo: $('#userPhoto').val().trim(),
+                        scores: [
+                            $('#q1').val(),
+                            $('#q2').val(),
+                            $('#q3').val(),
+                            $('#q4').val(),
+                            $('#q5').val(),
+                            $('#q6').val(),
+                            $('#q7').val(),
+                            $('#q8').val(),
+                            $('#q9').val(),
+                            $('#q10').val()
+                        ]
+                    };
+                    $.post('/api/friends', userInput)
+                        .done(function (data) {
+                            $('.modal').modal({
+                                dismissible: false,
+                                opacity: .5,
+                                inDuration: 300,
+                                outDuration: 200,
+                                startingTop: '4%',
+                                endingTop: '10%'
+                            });
+                            $('#userMatch').html(data.matchName);
+                            $("#userMatchImage").attr("src", data.matchImage);
+                            $('#modal1').modal('open');
+                        });
+                } else {
+                    alert("Oh no! Looks like we are missing some of your answers or inputs... Please fill all available fields...");
+                }
+            });
         });
     </script>
 </body>
